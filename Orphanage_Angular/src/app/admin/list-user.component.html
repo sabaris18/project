@@ -1,0 +1,58 @@
+<div class="row" *ngIf="isLoaded">
+    <div class="col-md-10">
+        <input type="text" class="form-control" placeholder="Search..." (keyup)="doFilter($event.target.value)">
+    </div>
+</div>
+<br>
+<div class="mat-elevation-z8" *ngIf="isLoaded">
+    <table mat-table [dataSource]="dataSource" matSort>
+        <ng-container matColumnDef="FirstName">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>First Name</th>
+            <td mat-cell *matCellDef="let element"> {{element.FirstName}} </td>
+        </ng-container>
+
+
+        <ng-container matColumnDef="LastName">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Last Name</th>
+            <td mat-cell *matCellDef="let element"> {{element.LastName}} </td>
+        </ng-container>
+
+
+        <ng-container matColumnDef="CategoryName">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> CategoryName </th>
+            <td mat-cell *matCellDef="let element"> {{element.CategoryName}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="EmailID">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> EmailID </th>
+            <td mat-cell *matCellDef="let element"> {{element.EmailID}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="Gender">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Gender </th>
+            <td mat-cell *matCellDef="let element"> {{element.Gender}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="ContactNumber">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Contact Number </th>
+            <td mat-cell *matCellDef="let element"> {{element.ContactNumber}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="Address">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Address </th>
+            <td mat-cell *matCellDef="let element"> {{element.Address}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="UserType">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>User Type </th>
+            <td mat-cell *matCellDef="let element"> {{element.UserType}} </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+    <mat-paginator [pageSizeOptions]="[10, 20, 50]" showFirstLastButtons></mat-paginator>
+</div>
+<ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" type="ball-spin-clockwise">
+    <p style="color: white">Please Wait...</p>
+</ngx-spinner>

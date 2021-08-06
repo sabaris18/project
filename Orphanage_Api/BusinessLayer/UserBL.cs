@@ -12,7 +12,7 @@ namespace BusinessLayer
     {
         private OrphanageContext db = new OrphanageContext();
 
-        public string AddUser(User user)
+        public string AddUser(User user)    //signup
         {
             try
             {
@@ -24,6 +24,11 @@ namespace BusinessLayer
                 }
                 else
                 {
+                    if (user.UserType == "Donor")
+                        user.Flag = 1;
+                    else
+                        user.Flag = 0;
+                            
                     db.Users.Add(user);
                     rowsAffected = db.SaveChanges();
 
@@ -39,11 +44,18 @@ namespace BusinessLayer
             }
         }
 
-        public User login(string email, string password, string role)
+        public User login(string email, string password)    // donor login
         {
-            User user = db.Users.SingleOrDefault(u => u.EmailID == email && u.Password == password && u.Role == role );
+            User user = db.Users.SingleOrDefault(u => u.EmailID == email && u.Password == password && u.UserType == "Donor");
             return user;
         }
+
+        public User orphanLogin(string email, string password)
+        {
+            User user = db.Users.SingleOrDefault(u => u.EmailID == email && u.Password == password && u.UserType == "Orphan");
+            return user;
+        }
+
 
         public List<Category> getCategory(string type)
         {
@@ -70,6 +82,11 @@ namespace BusinessLayer
             {
                 return ex.ToString();
             }
+        }
+
+        public List<ManageDonation> manageDonation()
+        {
+            return db.Database.SqlQuery<ManageDonation>("select * from ManageDonations where Flag = 1").ToList();
         }
 
     }

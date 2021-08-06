@@ -1,0 +1,27 @@
+<br>
+<div class="container-fluid" *ngIf="filteredDonation">
+ 
+  <br>
+  <mat-grid-list [cols]="isMobile ? 1 : 2" rowHeight="450px">
+      <mat-grid-tile *ngFor="let donation of filteredDonation">
+            <div class="flex">
+              <div class="card" style="width:20rem;">
+                  <img src="{{donation.DonationImage}}" 
+                    height="250px" class="img-responsive card-img-top" alt="...">
+                  <div class="card-body">
+                    <h5 class="card-title">
+                        <b>{{donation.DonationName}}</b>
+                    </h5>
+                  </div>
+                  <div class="card-footer">
+                    <button class="btn btn-primary" type="button" 
+                    (click)="Donate(donation.RouterLink)">Donate</button>
+                  </div>
+              </div>
+            </div>
+      </mat-grid-tile>
+  </mat-grid-list>
+</div>
+<ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" type="ball-spin-clockwise">  
+  <p style="color: white">Please Wait.Loading Data... </p>  
+</ngx-spinner> 

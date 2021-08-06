@@ -18,6 +18,8 @@ namespace DataAccessLayer.Model
 
         public string Description { get; set; }
 
-        public DateTime DonationDate { get; set; } 
+        public DateTime DonationDate { get; set; }
+
+        public int UserID { get; set; }
     }
 }

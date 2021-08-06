@@ -39,5 +39,53 @@ namespace Orphanage_Api.Controllers
             }
             return Ok(response);
         }
+
+        [HttpGet]
+        [Route("api/admin/viewDonation")]
+        public List<ViewDonation> viewDonation()
+        {
+            return db.viewDonation();
+        }
+
+        [HttpGet]
+        [Route("api/admin/orphanRequest")]
+        public List<User> orphanRequest()
+        {
+            return db.getOrphanRequest();
+        }
+
+        [HttpGet]
+        [Route("api/admin/updateFlag/{UserID}/{Flag}")]
+        public IHttpActionResult updateFlag(string UserID, string Flag)
+        {
+            RespMessage response = new RespMessage();
+            response.Message = db.updateFlag(UserID, Flag);
+            return Ok(response);
+        }
+
+        [HttpGet]
+        [Route("api/admin/getUserList")]
+        public List<User> getUserList()
+        {
+            return db.getUserList();
+        }
+
+
+        [HttpGet]
+        [Route("api/admin/manageDonationList")]
+        public List<ManageDonation> manageDonationList()
+        {
+            return db.manageDonationList();
+        }
+
+        [HttpPost]
+        [Route("api/admin/manageDonation")]
+        public IHttpActionResult manageDonation(List<ManageDonation> donation)
+        {
+            RespMessage response = new RespMessage();
+            response.Message = db.manageDonation(donation);
+            return Ok(response);
+        }
+
     }
 }

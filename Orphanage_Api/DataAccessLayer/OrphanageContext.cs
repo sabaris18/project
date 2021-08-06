@@ -24,5 +24,7 @@ namespace DataAccessLayer
         public DbSet<Books> Books { get; set; }
 
         public DbSet<Donation> Donations { get; set; }
+
+        public DbSet<ManageDonation> ManageDonations { get; set; }
     }
 }
